@@ -310,11 +310,40 @@ flex:1;
 height:70px;
 padding:8px;
 margin:0;
-background:#5a0000;
-border:2px solid #8d5f00;
 border-radius:12px;
 cursor:pointer;
-transition:.3s;
+
+transition:all .35s ease;
+
+opacity:.55;
+filter:brightness(.8) saturate(.8);
+
+transform:scale(.97);
+}
+
+/* TVTOTO NON AKTIF */
+
+#btnTVTOTO{
+background:linear-gradient(135deg,#4a0000,#7a0000);
+border:2px solid #b8860b;
+}
+
+/* FATCAI99 NON AKTIF */
+
+#btnFATCAI{
+background:linear-gradient(135deg,#0f4d2f,#1f7a4d);
+border:2px solid #d4af37;
+}
+
+/* TOMBOL AKTIF */
+
+.brand-btn.active{
+opacity:1;
+filter:brightness(1.15) saturate(1.2);
+
+transform:scale(1);
+
+z-index:2;
 }
 
 .brand-btn img{
@@ -327,6 +356,24 @@ object-fit:contain;
 border:2px solid #ffd86b;
 box-shadow:0 0 15px rgba(255,216,107,.5);
 background:#7a0000;
+}
+
+/* ACTIVE TVTOTO */
+
+#btnTVTOTO.active{
+background:linear-gradient(135deg,#7a0000,#b30000);
+border:2px solid #ffd86b;
+box-shadow:0 0 18px rgba(255,216,107,.6);
+}
+
+/* ACTIVE FATCAI99 */
+
+#btnFATCAI.active{
+background:linear-gradient(135deg,#0d4f2f,#138a52);
+border:2px solid #ffd86b;
+box-shadow:
+0 0 12px rgba(255,216,107,.7),
+0 0 25px rgba(19,138,82,.7);
 }
 
 
@@ -676,6 +723,15 @@ const fatcaiShioImages = {
 
 function switchBrand(brand){
 
+document.getElementById("btnTVTOTO").classList.remove("active");
+document.getElementById("btnFATCAI").classList.remove("active");
+
+if(brand==="tvtoto"){
+    document.getElementById("btnTVTOTO").classList.add("active");
+}else{
+    document.getElementById("btnFATCAI").classList.add("active");
+}
+
 /* GANTI GAMBAR SHIO SESUAI BRAND */
 
 Object.keys(shioData).forEach(shio => {
@@ -739,12 +795,34 @@ if(brand==="fatcai99"){
 
 document.body.style.background="#1f1600";
 
+/* PANEL FATCAI */
 
+document.querySelector(".panel").style.background =
+"linear-gradient(180deg,#123a25,#0c2b1a)";
 
-document.querySelector(".shio-circle").style.border="8px solid #d4af37";
-document.querySelector(".shio-circle").style.boxShadow="none";
+document.querySelector(".panel").style.border =
+"3px solid #d4af37";
 
-document.getElementById("marketLogo").style.filter="none";
+document.querySelector(".panel").style.boxShadow =
+"0 0 30px rgba(212,175,55,.35)";
+
+document.querySelector(".panel h2").style.color =
+"#ffd86b";
+
+document.querySelectorAll("label").forEach(el=>{
+el.style.color="#ffd86b";
+});
+
+document.querySelectorAll("select").forEach(el=>{
+el.style.background="#1b5e3b";
+el.style.color="#fff";
+});
+
+document.querySelectorAll(".panel button:not(.brand-btn)").forEach(btn=>{
+btn.style.background =
+"linear-gradient(to bottom,#ffd86b,#d4af37)";
+btn.style.color="#13472d";
+});	
 
 }else{
 
@@ -756,6 +834,26 @@ document.querySelector(".shio-circle").style.border="none";
 document.querySelector(".shio-circle").style.boxShadow="none";
 
 document.getElementById("marketLogo").style.filter="drop-shadow(0 4px 5px rgba(0,0,0,.6))";
+
+document.querySelector(".panel").style.background =
+"#460000";
+
+document.querySelector(".panel").style.border =
+"3px solid #ffb300";
+
+document.querySelector(".panel").style.boxShadow =
+"0 0 25px rgba(255,179,0,.25)";
+
+document.querySelectorAll("select").forEach(el=>{
+el.style.background="#720000";
+el.style.color="#fff";
+});
+
+document.querySelectorAll(".panel button:not(.brand-btn)").forEach(btn=>{
+btn.style.background =
+"linear-gradient(to bottom,#ffd86b,#ff9800)";
+btn.style.color="#550000";
+});
 }
 
 }
