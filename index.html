@@ -357,8 +357,8 @@ filter:drop-shadow(0 4px 8px rgba(0,0,0,.6));
 /* ================= PANEL ================= */
 
 .panel{
-width:350px;
-min-width:350px;
+width:400px;
+min-width:400px;
 
 position:sticky;
 top:20px;
@@ -659,7 +659,62 @@ logo:"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/logo-fatcai9
 
 };
 
+const fatcaiShioImages = {
+"SHIO BABI":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/shiobabi.png",
+"SHIO AYAM":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/shioayam.png",
+"SHIO NAGA":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/shionaga.png",
+"SHIO KELINCI":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/shiokelinci.png",
+"SHIO ULAR":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/shioular.png",
+"SHIO KERBAU":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/shiokerbau.png",
+"SHIO HARIMAU":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/shioharimau.png",
+"SHIO MONYET":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/shiomonyet.png",
+"SHIO KAMBING":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/shiokambing.png",
+"SHIO KUDA":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/shiokuda.png",
+"SHIO TIKUS":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/shiotikus.png",
+"SHIO ANJING":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/shioanjing.png"
+};
+
 function switchBrand(brand){
+
+/* GANTI GAMBAR SHIO SESUAI BRAND */
+
+Object.keys(shioData).forEach(shio => {
+
+    if(brand === "fatcai99"){
+
+        if(fatcaiShioImages[shio]){
+            shioData[shio].img = fatcaiShioImages[shio];
+        }
+
+    }else{
+
+        const defaultImages = {
+            "SHIO ULAR":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/shio%20ular.png",
+            "SHIO ANJING":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/shio%20anjing.png",
+            "SHIO HARIMAU":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/shio%20harimau.png",
+            "SHIO AYAM":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/shio%20ayam.png",
+            "SHIO TIKUS":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/shio%20tikus.png",
+            "SHIO MONYET":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/shio%20monyet.png",
+            "SHIO KELINCI":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/shio%20kelinci.png",
+            "SHIO KAMBING":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/shio%20kambing.png",
+            "SHIO BABI":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/shio%20babi.png",
+            "SHIO KERBAU":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/shio%20kerbau.png",
+            "SHIO KUDA":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/shio%20kuda.png",
+            "SHIO NAGA":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/shio%20nagaa.png"
+        };
+
+        shioData[shio].img = defaultImages[shio];
+    }
+});
+
+/* REFRESH GAMBAR SHIO YANG SEDANG TAMPIL */
+
+const currentShio = document.getElementById("shioSelect").value;
+
+if(currentShio){
+    document.getElementById("shioImage").src =
+    shioData[currentShio].img;
+}
 
 window.currentBrand = brand;
 
