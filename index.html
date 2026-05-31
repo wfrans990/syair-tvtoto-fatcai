@@ -140,8 +140,27 @@ align-items:center;
 max-width:420px;
 max-height:90px;
 object-fit:contain;
-
 filter:drop-shadow(0 4px 5px rgba(0,0,0,.6));
+}
+
+/* KHUSUS HONGKONG LOTTO */
+
+.market-hk{
+padding:10px;
+max-width:460px !important;
+max-height:100px !important;
+
+transform:translateY(-8px);
+}
+
+/* KHUSUS SYDNEY LOTTO */
+
+.market-sydney{
+padding:10px;
+max-width:380px !important;
+max-height:170px !important;
+
+transform:translateY(6px);
 }
 
 /* ================= SHIO ================= */
@@ -1243,8 +1262,7 @@ shioKeys[Math.floor(Math.random()*shioKeys.length)];
 
 document.getElementById("shioSelect").value=randomShio;
 
-document.getElementById("marketLogo").src=
-marketLogoData[market];
+updateMarketOnly();
 
 document.getElementById("shioName").innerText=
 randomShio;
@@ -1469,18 +1487,33 @@ function updateMarketOnly(){
 
 const market=document.getElementById("marketSelect").value;
 
-document.getElementById("marketLogo").src=
-marketLogoData[market];
+const logo=document.getElementById("marketLogo");
+
+logo.src=marketLogoData[market];
+
+/* RESET */
+
+logo.classList.remove(
+"market-hk",
+"market-sydney"
+);
+
+/* CUSTOM POSISI */
+
+if(market==="HONGKONG LOTTO"){
+logo.classList.add("market-hk");
+}
+
+if(market==="SYDNEY LOTTO"){
+logo.classList.add("market-sydney");
+}
 
 }
 
 document.getElementById("marketSelect")
 .addEventListener("change",function(){
 
-const market=document.getElementById("marketSelect").value;
-
-document.getElementById("marketLogo").src=
-marketLogoData[market];
+updateMarketOnly();
 
 });
 
