@@ -39,6 +39,8 @@ color:white;
 overflow-x:auto;
 }
 
+
+
 /* ================= CONTAINER ================= */
 
 .container{
@@ -360,6 +362,13 @@ background:linear-gradient(135deg,#0f4d2f,#1f7a4d);
 border:2px solid #d4af37;
 }
 
+/* PESONA805 NON AKTIF */
+
+#btnPESONA{
+background:linear-gradient(135deg,#5a0078,#a100ff);
+border:2px solid #ff6bda;
+}
+
 /* TOMBOL AKTIF */
 
 .brand-btn.active{
@@ -401,6 +410,17 @@ box-shadow:
 0 0 25px rgba(19,138,82,.7);
 }
 
+/* ACTIVE PESONA805 */
+
+#btnPESONA.active{
+background:linear-gradient(135deg,#7a00cc,#ff3ec9);
+
+border:2px solid #ff9df0;
+
+box-shadow:
+0 0 15px rgba(255,62,201,.7),
+0 0 30px rgba(122,0,204,.8);
+}
 
 
 /* ================= BRAND LOGO PREVIEW ================= */
@@ -647,6 +667,10 @@ Bisik malam terdengar samar Jejak licin menuju pagar Kalau hoki sedang bergetar 
 <img src="https://cdn.areabermain.club/assets/cdn/az8/2025/12/21/20251221/3efa72027f4b37ceb0e92d3df7bd7144/logo-fatcai99-1.png" alt="FATCAI99">
 </button>
 
+<button class="brand-btn" id="btnPESONA" onclick="switchBrand('pesona805')">
+<img src="https://pesona805inovasi.com/resources/images/logo.png" alt="PESONA805">
+</button>
+
 </div>
 
 
@@ -756,6 +780,12 @@ fatcai99:{
 title:"GENERATOR SYAIR FATCAI99",
 template:"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/fatnew.png",
 logo:"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/logo-fatcai99-1.png"
+},
+
+pesona805:{
+title:"GENERATOR SYAIR PESONA805",
+template:"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/pesonalayout.png",
+logo:"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/pesona805.png"
 }
 
 };
@@ -779,11 +809,20 @@ function switchBrand(brand){
 
 document.getElementById("btnTVTOTO").classList.remove("active");
 document.getElementById("btnFATCAI").classList.remove("active");
+document.getElementById("btnPESONA").classList.remove("active");
 
 if(brand==="tvtoto"){
-    document.getElementById("btnTVTOTO").classList.add("active");
+
+document.getElementById("btnTVTOTO").classList.add("active");
+
+}else if(brand==="fatcai99"){
+
+document.getElementById("btnFATCAI").classList.add("active");
+
 }else{
-    document.getElementById("btnFATCAI").classList.add("active");
+
+document.getElementById("btnPESONA").classList.add("active");
+
 }
 
 /* GANTI GAMBAR SHIO SESUAI BRAND */
@@ -827,15 +866,6 @@ if(currentShio){
 }
 
 window.currentBrand = brand;
-
-document.getElementById("btnTVTOTO").classList.remove("active");
-document.getElementById("btnFATCAI").classList.remove("active");
-
-if(brand==="tvtoto"){
-document.getElementById("btnTVTOTO").classList.add("active");
-}else{
-document.getElementById("btnFATCAI").classList.add("active");
-}
 
 document.querySelector(".panel h2").innerText=brandData[brand].title;
 
@@ -884,10 +914,45 @@ btn.style.background =
 btn.style.color="#13472d";
 });	
 
+}else if(brand==="pesona805"){
+
+document.body.style.backgroundImage=
+"url('https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/pesona.jpg')";
+
+document.querySelector(".panel").style.background=
+"linear-gradient(180deg,#3d005c,#190028)";
+
+document.querySelector(".panel").style.border=
+"3px solid #ff69d9";
+
+document.querySelector(".panel").style.boxShadow=
+"0 0 30px rgba(255,105,217,.45)";
+
+document.querySelectorAll("label").forEach(el=>{
+el.style.color="#ff9df0";
+});
+
+document.querySelectorAll("select").forEach(el=>{
+el.style.background="#5d007f";
+el.style.color="#fff";
+});
+
+document.querySelectorAll(".panel button:not(.brand-btn)").forEach(btn=>{
+btn.style.background=
+"linear-gradient(to bottom,#ff6bda,#c026ff)";
+btn.style.color="#fff";
+});
+
 }else{
 
 document.body.style.backgroundImage=
 "url('https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/tvtoto_backgroundweb.png')";
+document.querySelector(".panel h2").style.color =
+"#ffd86b";
+
+document.querySelectorAll("label").forEach(el=>{
+    el.style.color="#ffd86b";
+});
 
 document.body.style.backgroundSize="cover";
 document.body.style.backgroundPosition="center";
@@ -1537,10 +1602,11 @@ updateMarketOnly();
 
 /* ================= PILIH SHIO ================= */
 
-resetCopyButton();
 
 document.getElementById("shioSelect")
 .addEventListener("change",function(){
+
+resetCopyButton();
 
 const selectedShio=this.value;
 
