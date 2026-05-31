@@ -637,6 +637,24 @@ Bisik malam terdengar samar Jejak licin menuju pagar Kalau hoki sedang bergetar 
 <option>BANGKOK</option>
 <option>POIPET</option>
 <option>HUAHIN</option>
+<option>CALIFORNIA</option>
+<option>CAROLINA</option>
+<option>BULLSEYE</option>
+<option>HOKIDRAW</option>
+<option>CHELSEA</option>
+<option>FLORIDA</option>
+<option>HONGKONG LOTTO</option>
+<option>KENTUCKY</option>
+<option>KINGKONG</option>
+<option>MAGNUM</option>
+<option>NEWYORK</option>
+<option>OREGON</option>
+<option>PCSO</option>
+<option>SINGAPORE</option>
+<option>SYDNEY LOTTO</option>
+<option>TOTO CAMBODIA</option>
+<option>TOTO MALI</option>
+<option>TOTO MACAU</option>
 </select>
 
 </div>
@@ -660,6 +678,10 @@ Bisik malam terdengar samar Jejak licin menuju pagar Kalau hoki sedang bergetar 
 📥 DOWNLOAD PNG
 </button>
 
+<button id="copyBtn" onclick="copyImage()">
+📋 COPY IMAGE
+</button>
+
 </div>
 
 </div>
@@ -670,8 +692,13 @@ Bisik malam terdengar samar Jejak licin menuju pagar Kalau hoki sedang bergetar 
 
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('dragstart', e => e.preventDefault());
-document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('copy', e => {
 
+if(!window.allowImageCopy){
+e.preventDefault();
+}
+
+});
 document.onkeydown = function(e){
 
 if(
@@ -882,6 +909,42 @@ const marketLogoData={
 "POIPET":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/logo%20poipet.png",
 
 "HUAHIN":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/huahin%20logo.png",
+
+"CALIFORNIA":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/california.png",
+
+"CAROLINA":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/carolinaa.png",
+
+"BULLSEYE":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/nz-bullseye.png",
+
+"HOKIDRAW":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/hokidraw.png",
+
+"CHELSEA":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/chelseaPools_logo.png",
+
+"FLORIDA":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/floridaeve.png",
+
+"HONGKONG LOTTO":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/hongkonglotto.png",
+
+"KENTUCKY":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/kentucky.png",
+
+"KINGKONG":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/KINGKONG.png",
+
+"MAGNUM":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/magnum.png",
+
+"NEWYORK":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/newyork.png",
+
+"OREGON":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/oregon.png",
+
+"PCSO":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/pcso.png",
+
+"SINGAPORE":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/singapore.png",
+
+"SYDNEY LOTTO":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/logo_sydney.png",
+
+"TOTO CAMBODIA":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/toto%20cambodia.png",
+
+"TOTO MALI":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/",
+
+"TOTO MACAU":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/totomacau.png",
 
 "BRUNEI":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/brunei-logo-removebg-preview.png"
 
@@ -1122,6 +1185,15 @@ document.getElementById("todayDate").innerText=tanggal;
 
 /* ================= RANDOM ================= */
 
+function resetCopyButton(){
+
+const btn=document.getElementById("copyBtn");
+
+btn.innerHTML="📋 COPY IMAGE";
+btn.disabled=false;
+
+}
+
 function randomNumber(length){
 
 let result='';
@@ -1159,6 +1231,8 @@ return arr;
 /* ================= GENERATE ================= */
 
 function generateAll(){
+
+resetCopyButton();
 
 const market=document.getElementById("marketSelect").value;
 
@@ -1220,6 +1294,8 @@ syairRandom;
 /* ================= ACAK SYAIR ================= */
 
 function randomSyairOnly(){
+
+resetCopyButton();
 
 const currentShio =
 document.getElementById("shioSelect").value;
@@ -1315,6 +1391,70 @@ console.log(err);
 
 }
 
+/* ================= COPY IMAGE ================= */
+
+async function copyImage(){
+
+const btn=document.getElementById("copyBtn");
+
+if(btn.disabled) return;
+
+const preview=document.getElementById("capture");
+
+const oldTransform=preview.style.transform;
+const oldMargin=preview.style.marginBottom;
+
+preview.style.transform="scale(1)";
+preview.style.marginBottom="0px";
+
+await new Promise(resolve=>setTimeout(resolve,300));
+
+try{
+
+const canvas=await html2canvas(preview,{
+
+useCORS:true,
+allowTaint:false,
+backgroundColor:null,
+logging:false,
+
+scale:2,
+
+width:1254,
+height:1254
+
+});
+
+preview.style.transform=oldTransform;
+preview.style.marginBottom=oldMargin;
+
+canvas.toBlob(async(blob)=>{
+
+window.allowImageCopy=true;
+
+await navigator.clipboard.write([
+new ClipboardItem({
+'image/png': blob
+})
+]);
+
+window.allowImageCopy=false;
+
+/* UBAH TOMBOL */
+
+btn.innerHTML="✅ BERHASIL COPY";
+btn.disabled=true;
+
+});
+
+}catch(err){
+
+console.log(err);
+
+}
+
+}
+
 /* ================= START ================= */
 
 updateDate();
@@ -1345,6 +1485,8 @@ marketLogoData[market];
 });
 
 /* ================= PILIH SHIO ================= */
+
+resetCopyButton();
 
 document.getElementById("shioSelect")
 .addEventListener("change",function(){
