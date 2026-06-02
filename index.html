@@ -805,6 +805,21 @@ const fatcaiShioImages = {
 "SHIO ANJING":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/shioanjing.png"
 };
 
+const pesonaShioImages = {
+"SHIO BABI":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/babipesona.png",
+"SHIO AYAM":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/ayampesona.png",
+"SHIO NAGA":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/nagapesona.png",
+"SHIO KELINCI":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/kelincipesona.png",
+"SHIO ULAR":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/ularpesona.png",
+"SHIO KERBAU":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/kerbaupesona.png",
+"SHIO HARIMAU":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/harimaupesona.png",
+"SHIO MONYET":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/monyetpesona.png",
+"SHIO KAMBING":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/kambingpesona.png",
+"SHIO KUDA":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/kudapesona.png",
+"SHIO TIKUS":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/tikuspesona.png",
+"SHIO ANJING":"https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/anjingpesona.png"
+};
+
 function switchBrand(brand){
 
 document.getElementById("btnTVTOTO").classList.remove("active");
@@ -834,6 +849,13 @@ Object.keys(shioData).forEach(shio => {
         if(fatcaiShioImages[shio]){
             shioData[shio].img = fatcaiShioImages[shio];
         }
+
+}else if(brand === "pesona805"){
+
+    if(pesonaShioImages[shio]){
+        shioData[shio].img = pesonaShioImages[shio];
+    }
+
 
     }else{
 
