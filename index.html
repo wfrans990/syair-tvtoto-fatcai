@@ -737,34 +737,6 @@ Bisik malam terdengar samar Jejak licin menuju pagar Kalau hoki sedang bergetar 
 
 <script>
 
-/* ================= PROTEKSI ================= */
-
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('dragstart', e => e.preventDefault());
-document.addEventListener('copy', e => {
-
-if(!window.allowImageCopy){
-e.preventDefault();
-}
-
-});
-document.onkeydown = function(e){
-
-if(
-e.keyCode == 123 ||
-(e.ctrlKey && e.shiftKey && e.keyCode == 73) ||
-(e.ctrlKey && e.shiftKey && e.keyCode == 74) ||
-(e.ctrlKey && e.keyCode == 85) ||
-(e.ctrlKey && e.shiftKey && e.keyCode == 67) ||
-(e.ctrlKey && e.keyCode == 83)
-){
-return false;
-}
-
-};
-
-/* ================= TEMPLATE ================= */
-
 
 /* ================= BRAND ================= */
 
