@@ -371,15 +371,6 @@ border:2px solid #ff6bda;
 
 /* TOMBOL AKTIF */
 
-.brand-btn.active{
-opacity:1;
-filter:brightness(1.15) saturate(1.2);
-
-transform:scale(1);
-
-z-index:2;
-}
-
 .brand-btn img{
 width:100%;
 height:100%;
@@ -387,9 +378,13 @@ object-fit:contain;
 }
 
 .brand-btn.active{
+opacity:1;
+filter:brightness(1.15) saturate(1.2);
+transform:scale(1);
 border:2px solid #ffd86b;
 box-shadow:0 0 15px rgba(255,216,107,.5);
 background:#7a0000;
+z-index:2;
 }
 
 /* ACTIVE TVTOTO */
@@ -859,8 +854,6 @@ if(currentShio){
     shioData[currentShio].img;
 }
 
-window.currentBrand = brand;
-
 document.querySelector(".panel h2").innerText=brandData[brand].title;
 
 document.querySelector(".preview").style.backgroundImage=
@@ -873,11 +866,6 @@ if(brand==="fatcai99"){
 
 document.body.style.backgroundImage=
 "url('https://raw.githubusercontent.com/wfrans990/syair-tvtoto-fatcai/main/background-web-fatcai99.jpg')";
-
-document.body.style.backgroundSize="cover";
-document.body.style.backgroundPosition="center";
-document.body.style.backgroundAttachment="fixed";
-document.body.style.backgroundRepeat="no-repeat";
 
 /* PANEL FATCAI */
 
@@ -948,12 +936,15 @@ document.querySelectorAll("label").forEach(el=>{
     el.style.color="#ffd86b";
 });
 
-document.body.style.backgroundSize="cover";
-document.body.style.backgroundPosition="center";
-document.body.style.backgroundAttachment="fixed";
-document.body.style.backgroundRepeat="no-repeat";
-
-
+function setBodyBackground(url){
+    Object.assign(document.body.style,{
+        backgroundImage:`url('${url}')`,
+        backgroundSize:"cover",
+        backgroundPosition:"center",
+        backgroundAttachment:"fixed",
+        backgroundRepeat:"no-repeat"
+    });
+}
 
 document.querySelector(".shio-circle").style.border="none";
 document.querySelector(".shio-circle").style.boxShadow="none";
@@ -983,16 +974,6 @@ btn.style.color="#550000";
 
 }
 
-
-const templateBackground={
-
-"lentera":
-"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/Layout%20Syair%20TVTOTO.png",
-
-"naga":
-"https://raw.githubusercontent.com/wfrans990/syair-tvtoto/main/ChatGPT%20Image%20May%2028%2C%202026%2C%2004_35_47%20PM.png"
-
-};
 
 /* ================= PASARAN ================= */
 
